@@ -1,0 +1,38 @@
+//SQL statement for insert a new course into course table:
+
+string insertCourseSQL = "INSERT INTO Course (CourseID, CourseTitle, HoursPerWeek) VALUES (@courseID, @courseTitle, @courseHours)";
+
+//SQL statement to retrieve a course by course ID
+
+string selectCoursesSQL = "SELECT * FROM Course WHERE CourseID = @courseID";
+
+//SQL statement for insert a new course offering into course offering table:
+
+string insertCourseOfferingSQL = "INSERT INTO CourseOffering (Year, Semester, Course_CourseID) VALUES (@year, @Semester, @courseID)";
+
+//SQL statement to retrieve all course offerings        
+
+string selectCoursesSQL = "SELECT * FROM CourseOffering";
+
+//SQL statement to insert a new student to student table
+
+string insertStudentSQL = "INSERT INTO Student (StudentNum, Name, Type) VALUES (@studentNum, @name, @type)";
+
+//SQL statement to retrieve a student by student id.
+
+string selectStudentSQL = "SELECT * FROM Student WHERE StudentNum = @studentNum";
+
+//SQL statement to insert a new registration into registration table.
+
+string insertRegistrationSQL =
+            "INSERT INTO Registration "
+                + "(Student_StudentNum, CourseOffering_Course_CourseID, CourseOffering_Year, CourseOffering_Semester) "
+                + "VALUES (@studentNum, @courseID, @year, @semester)";
+				
+//SQL statement to retrieve all students registed for a course offering.
+
+string selectSQL = "SELECT s.StudentNum, s.Name, s.Type FROM Student s "
+                                + "JOIN Registration r ON s.StudentNum = r.Student_StudentNum  "
+                                + "WHERE r.CourseOffering_Course_CourseID=@courseID "
+                                + "  AND r.CourseOffering_Year = @year "
+                                + "  AND r.CourseOffering_Semester = @Semester";
